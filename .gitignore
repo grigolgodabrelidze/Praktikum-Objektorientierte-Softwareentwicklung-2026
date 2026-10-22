@@ -1,0 +1,27 @@
+# Geheimnisse und lokale Konfiguration
+.env
+*.local
+
+# Laufzeitdaten (werden von der App selbst erzeugt)
+Projekt 1/users.json
+Projekt 2/data/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Node
+node_modules/
+dist/
+dist-ssr/
+*.log
+
+# Editoren / Betriebssystem
+.idea/
+.vscode/
+.claude/
+.DS_Store
+Thumbs.db

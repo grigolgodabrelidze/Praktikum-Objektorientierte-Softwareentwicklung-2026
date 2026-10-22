@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmdle — Tägliches Film-Rätsel</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="profile-card" id="profile-card-btn" style="cursor: pointer;" title="Profil bearbeiten">
+                <div class="profile-avatar" id="user-avatar" aria-hidden="true">GS</div>
+                <div class="profile-info">
+                    <p class="profile-name" id="user-name">Gastspieler</p>
+                    <p class="profile-handle" id="user-handle">@gast</p>
+                </div>
+            </div>
+            
+            <button id="auth-trigger-btn" class="nav-item" style="width: 100%; margin-top: 0.75rem; justify-content: center; background: var(--accent); border: none; font-weight: 700; cursor: pointer;">
+                Einloggen
+            </button>
+
+            <nav class="sidebar-nav" aria-label="Navigation">
+                <a class="nav-item" href="#" id="btn-history">
+                    <span class="nav-icon" aria-hidden="true">↺</span>
+                    <span>Mein Verlauf</span>
+                </a>
+                <a class="nav-item" href="#" id="btn-streak">
+                    <span class="nav-icon" aria-hidden="true">★</span>
+                    <span>Siegesserien</span>
+                </a>
+            </nav>
+
+            <section class="stats-panel" aria-labelledby="stats-heading">
+                <h2 id="stats-heading">Deine Statistik</h2>
+                <dl class="stats-list">
+                    <div class="stat-row">
+                        <dt>Versuche heute</dt>
+                        <dd id="stat-attempts">0</dd>
+                    </div>
+                    <div class="stat-row">
+                        <dt>Aktuelle Serie</dt>
+                        <dd id="stat-streak">0</dd>
+                    </div>
+                    <div class="stat-row">
+                        <dt>Erfolgsquote</dt>
+                        <dd id="stat-win-rate">—</dd>
+                    </div>
+                </dl>
+            </section>
+        </aside>
+
+        <main class="game-area">
+            <header class="game-header">
+                <div class="logo">FILMDLE</div>
+                <h1 id="daily-title">Täglicher Film</h1>
+            </header>
+
+            <section class="search-section" aria-label="Film eingeben">
+                <div class="search-wrapper">
+                    <label class="visually-hidden" for="movie-search">Filmtitel suchen</label>
+                    <input id="movie-search" type="search" autocomplete="off" placeholder="Suche Filmtitel...">
+                    <ul id="search-results" class="search-results" role="listbox" hidden></ul>
+                </div>
+                <button id="guess-btn" type="button" disabled>RATEN</button>
+            </section>
+
+            <p id="attempt-hint" class="attempt-hint" aria-live="polite"></p>
+
+            <section class="guesses-section" aria-label="Rateversuche">
+                <table class="guesses-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Versuch</th>
+                            <th scope="col">Filmtitel</th>
+                            <th scope="col">Erscheinungsjahr</th>
+                            <th scope="col">Genre</th>
+                            <th scope="col">Regisseur</th>
+                        </tr>
+                    </thead>
+                    <tbody id="guesses-body"></tbody>
+                </table>
+            </section>
+
+            <div id="game-message" class="game-message" role="status" hidden></div>
+        </main>
+    </div>
+
+    <div id="auth-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button id="close-auth-btn" class="close-btn" type="button">&times;</button>
+            <h2 id="auth-modal-title">Einloggen</h2>
+            
+            <form id="auth-form">
+                <div class="form-group">
+                    <input type="text" id="auth-username" placeholder="Benutzername (Handle)" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="auth-password" placeholder="Passwort" required autocomplete="current-password">
+                </div>
+                <button type="submit" id="auth-submit-btn">Anmelden</button>
+            </form>
+            
+            <p class="auth-toggle-text">
+                Noch kein Konto? <a href="#" id="auth-toggle-link">Jetzt registrieren</a>
+            </p>
+        </div>
+    </div>
+
+    <div id="profile-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button id="close-profile-btn" class="close-btn" type="button">&times;</button>
+            <h2>Profil bearbeiten</h2>
+            
+            <form id="profile-form">
+                <div class="form-group">
+                    <label for="profile-display-name" style="display: block; margin-bottom: 0.5rem; color: var(--light); text-align: left;">Dein Anzeigename</label>
+                    <input type="text" id="profile-display-name" placeholder="Wie sollen wir dich nennen?" required>
+                </div>
+                <button type="submit" style="background: var(--accent); width: 100%; border: none; padding: 0.8rem; border-radius: 4px; font-weight: bold; cursor: pointer;">Speichern</button>
+            </form>
+            
+            <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid var(--gray);">
+            
+            <button id="delete-account-btn" type="button" style="background-color: #dc3545; color: white; width: 100%; border: none; padding: 0.8rem; border-radius: 4px; font-weight: bold; cursor: pointer;">Konto löschen</button>
+        </div>
+    </div>
+
+    <script type="module" src="/js/app.js"></script>
+</body>
+</html>

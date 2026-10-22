@@ -1,0 +1,597 @@
+:root {
+    --bg-dark: #0f1117;
+    --bg-panel: #1a1d26;
+    --bg-panel-hover: #222633;
+    --border: #2e3344;
+    --text: #f3f4f6;
+    --text-muted: #9ca3af;
+    --accent: #f97316;
+    --accent-hover: #ea580c;
+    --green: #22c55e;
+    --yellow: #eab308;
+    --red: #ef4444;
+    --gray: #374151;
+    --radius: 12px;
+    --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: var(--text);
+    background:
+        linear-gradient(rgba(15, 17, 23, 0.92), rgba(15, 17, 23, 0.96)),
+        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1600&q=80")
+        center / cover fixed;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Haupt-Layout mit CSS Grid. */
+
+.app {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: 100vh;
+}
+
+.sidebar {
+    padding: 1.5rem;
+    background: rgba(15, 17, 23, 0.85);
+    border-right: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+}
+
+/* Profil/Account-Karte. */
+.profile-card {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 1rem;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.profile-avatar {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #fb923c);
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.profile-name {
+    margin: 0;
+    font-weight: 600;
+}
+
+.profile-handle {
+    margin: 0.15rem 0 0;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.sidebar-nav {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    color: var(--text);
+    text-decoration: none;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.nav-item:hover {
+    background: var(--bg-panel-hover);
+    border-color: #3b4258;
+}
+
+.nav-icon {
+    font-size: 1.1rem;
+    opacity: 0.85;
+}
+
+.stats-panel {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.stats-panel h2 {
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.stats-list {
+    margin: 0;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.stat-row:last-child {
+    border-bottom: none;
+}
+
+.stat-row dt {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+}
+
+.stat-row dd {
+    margin: 0;
+    font-weight: 700;
+}
+
+.game-area {
+    padding: 2rem 2.5rem 3rem;
+}
+
+.game-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+}
+
+.game-header h1 {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+
+.search-section {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
+.search-wrapper {
+    position: relative;
+    flex: 1;
+}
+
+#movie-search {
+    width: 100%;
+    padding: 0.95rem 1rem;
+    font-size: 1rem;
+    color: var(--text);
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+#movie-search:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+}
+
+#movie-search:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.search-results {
+    position: absolute;
+    top: calc(100% + 0.35rem);
+    left: 0;
+    right: 0;
+    z-index: 20;
+    margin: 0;
+    padding: 0.35rem;
+    list-style: none;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.search-results li {
+    padding: 0.75rem 0.85rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.search-results li:hover,
+.search-results li[aria-selected="true"] {
+    background: var(--bg-panel-hover);
+}
+
+#guess-btn {
+    padding: 0.95rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #fff;
+    background: var(--accent);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+#guess-btn:hover:not(:disabled) {
+    background: var(--accent-hover);
+}
+
+#guess-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.attempt-hint {
+    margin: 0.75rem 0 1.25rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.guesses-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.5rem;
+}
+
+.guesses-table th {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.guesses-table td {
+    padding: 0.85rem 0.75rem;
+    background: rgba(26, 29, 38, 0.75);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.guesses-table td:first-child {
+    border-left: 1px solid var(--border);
+    border-radius: var(--radius) 0 0 var(--radius);
+    font-weight: 700;
+    color: var(--text-muted);
+    width: 4.5rem;
+}
+
+.guesses-table td:last-child {
+    border-right: 1px solid var(--border);
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.guesses-table tr.empty-row td {
+    min-height: 52px;
+    background: transparent;
+    border: 1px dashed #3b4258;
+    color: transparent;
+}
+
+.feedback-cell {
+    font-weight: 600;
+}
+
+.feedback-green {
+    background: rgba(34, 197, 94, 0.22) !important;
+    color: #bbf7d0;
+}
+
+.feedback-yellow {
+    background: rgba(234, 179, 8, 0.22) !important;
+    color: #fef08a;
+}
+
+.feedback-red {
+    background: rgba(239, 68, 68, 0.22) !important;
+    color: #fecaca;
+}
+
+.feedback-incorrect {
+    background: rgba(239, 68, 68, 0.18) !important;
+    color: #fecaca;
+}
+
+.direction-arrow {
+    margin-left: 0.5rem;      
+    font-size: 1.6rem;        
+    font-weight: 900;         
+    vertical-align: middle;   
+    line-height: 1;           
+}
+
+.game-message {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+}
+
+.game-message.win {
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    color: #bbf7d0;
+}
+
+.game-message.lose {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    color: #fecaca;
+}
+
+@media (max-width: 900px) {
+    .app {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .game-area {
+        padding: 1.5rem;
+    }
+
+    .search-section {
+        flex-direction: column;
+    }
+
+    #guess-btn {
+        width: 100%;
+    }
+
+    .guesses-section {
+        overflow-x: auto;
+    }
+
+    .guesses-table {
+        min-width: 640px;
+    }
+}
+/* --- MODALS (Pop-Up Fenster für Login & Profil) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    z-index: 100;
+    place-items: center; /* Zentriert das Fenster, wenn display auf grid steht */
+}
+
+.modal-content {
+    background: var(--bg-panel);
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    width: 90%;
+    max-width: 420px;
+    position: relative;
+    box-shadow: var(--shadow);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+}
+
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: color 0.15s ease;
+}
+
+.close-btn:hover {
+    color: var(--text);
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: rgba(15, 17, 23, 0.6);
+    color: var(--text);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.15s ease;
+}
+
+.form-group input:focus {
+    border-color: var(--accent);
+}
+
+#auth-submit-btn {
+    width: 100%;
+    padding: 0.95rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    margin-top: 0.5rem;
+}
+
+#auth-submit-btn:hover {
+    background: var(--accent-hover);
+}
+
+.auth-toggle-text {
+    text-align: center;
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.auth-toggle-text a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+/* --- MODALS (Pop-Up Fenster für Login & Profil) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    z-index: 100;
+    place-items: center; /* Zentriert das Fenster, wenn display auf grid steht */
+}
+
+.modal-content {
+    background: var(--bg-panel);
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    width: 90%;
+    max-width: 420px;
+    position: relative;
+    box-shadow: var(--shadow);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+}
+
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: color 0.15s ease;
+}
+
+.close-btn:hover {
+    color: var(--text);
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: rgba(15, 17, 23, 0.6);
+    color: var(--text);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.15s ease;
+}
+
+.form-group input:focus {
+    border-color: var(--accent);
+}
+
+#auth-submit-btn {
+    width: 100%;
+    padding: 0.95rem;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    margin-top: 0.5rem;
+}
+
+#auth-submit-btn:hover {
+    background: var(--accent-hover);
+}
+
+.auth-toggle-text {
+    text-align: center;
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.auth-toggle-text a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}

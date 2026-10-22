@@ -1,0 +1,98 @@
+:root {
+  --text: #64748b;
+  --text-h: #0f172a;
+  --bg: #f6f8fb;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --code-bg: #f1f5f9;
+  --accent: #042c53;
+  --accent-bg: #e6f1fb;
+  --social-bg: #f8fafc;
+  --shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.06);
+
+  /* Fixed navy surface for the sidebar — stays constant regardless of light/dark scheme. */
+  --navy: #042c53;
+  --on-navy: #f8fafc;
+  --on-navy-muted: rgba(248, 250, 252, 0.6);
+  --on-navy-hover: rgba(248, 250, 252, 0.08);
+  --on-navy-active: rgba(248, 250, 252, 0.14);
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --mono: ui-monospace, Consolas, monospace;
+
+  font: 16px/145% var(--sans);
+  letter-spacing: 0.1px;
+  color-scheme: light;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root[data-theme='dark'] {
+  --text: #94a3b8;
+  --text-h: #f1f5f9;
+  --bg: #0b1220;
+  --surface: #131b2c;
+  --border: #263449;
+  --code-bg: #1a2333;
+  --accent: #4d8dcf;
+  --accent-bg: rgba(77, 141, 207, 0.16);
+  --social-bg: #17202f;
+  --shadow:
+    0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
+}
+
+#root {
+  width: 100%;
+  min-height: 100svh;
+  display: flex;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 24px;
+  letter-spacing: -0.24px;
+  margin: 0 0 4px;
+}
+h2 {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 130%;
+  color: var(--text);
+  margin: 0 0 12px;
+}
+p {
+  margin: 0;
+}
+
+code {
+  font-family: var(--mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
